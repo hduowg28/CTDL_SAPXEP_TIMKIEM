@@ -5,24 +5,29 @@
 #define vi vector<int>
 #define all(x) x.begin(), x.end()
 using namespace std;
-void io();
 
+void io();
 void solve(){
-    int n;
+    int  n, q, l ,r, x;
     cin>>n;
     vi v(n);
     for(auto &x:v) cin>>x;
-    for(int i=0;i<n;i++){
-        int cnt=0;
-        for(int j=i+1;j<n;j++){
-            if(v[i]>v[j]) {swap(v[i], v[j]);cnt++;}
+    cin>>q;
+    FOR(i, 0, q){
+         cin>>l>>r>>x;
+         int cnt=0,ans=0;
+        for(int j=l-1;j<r;j++){
+            if(v[j]!=x){
+                ans=j;
+                cnt++;
+                break;
+            }
         }
-        if(cnt){
-            cout<<"Buoc "<<i+1<<": ";
-            for(auto x:v) cout<<x<<" ";
-            cout<<"\n";
-        }
+            cout<<(cnt?ans+1:-1)<<endl;
+
+        
     }
+        
 }
 int main()
 {
@@ -31,7 +36,6 @@ int main()
     // cin >> t;
     while (t--)
         solve();
-        // cout<<cnt;
     return 0;
 }
 void io()
