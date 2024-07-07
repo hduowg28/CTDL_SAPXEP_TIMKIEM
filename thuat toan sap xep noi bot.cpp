@@ -2,25 +2,20 @@
 using namespace std;
 
 void solve(){
-    int n;
+    int n, k=0;
     cin>>n;
     vector <int> v(n);
     for(int i=0;i<n;i++) cin>>v[i];
-    for(int i=0;i<n;i++){
-        int new_index=i, new_number=v[i];
-        for(int j = i;j>=0;--j){
-            if(v[j]>new_number){
-                // new_number=v[j];
-                swap(v[j], v[new_index]);
-                new_index=j;
-                // cout<<new_number<<"*"<<new_index<<"\n";
-            }
+    for(int i=n-1;i>=0;--i){
+        int cnt=0;
+        for(int j=0;j<i;j++){
+            if(v[j]>v[j+1]) {swap (v[j], v[j+1]); cnt++;}
         }
-        for(int j=0;j<=i;j++){
-            cout<<v[j]<<" ";
-            
+        if(cnt){
+            cout<<"Buoc "<<++k<<": ";
+            for(auto x:v) cout<<x<<" ";
+            cout<<endl;
         }
-        cout<<endl;
     }
 }
 int main()
